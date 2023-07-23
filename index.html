@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="background-color: lightblue;">
+                    <b>{{ message }}</b></p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h1>{{ title }}</h1>
+
+        <table>
+            <tr>
+                <th>タイトル</th>
+                <th>作成日</th>
+            </tr>
+            {% for i in all_data %}
+            <tr>
+                <td><a href="/detail?id={{ i.id }}">{{ i.title }}</a></td>
+                <td>{{ i.create_date.date() }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <p><a href="/new" class="button">新規作成</a></p>
+    </body>
+</html>
